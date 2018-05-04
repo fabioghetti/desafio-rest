@@ -16,22 +16,9 @@ public class PlanetaCache {
 	@Autowired
 	private PlanetaService service;
 	
-	private /*static*/ final boolean ativo = true;
+	private final boolean ativo = true;
 	
-//	private static PlanetaCache instance = null;
-	
-	private /*static*/ HashMap<String, Integer> aparicoesFilmes = null;
-	
-	/*private PlanetaCache() {
-		aparicoesFilmes = new HashMap<String, Integer>();
-	}*/
-	
-	/*public static PlanetaCache getInstance() {
-		if (instance == null) {
-			instance = new PlanetaCache();
-		}
-		return instance;
-	}*/
+	private HashMap<String, Integer> aparicoesFilmes = null;
 	
 	public Integer getValue(final String value) {
 		return aparicoesFilmes.get(value);
@@ -45,7 +32,7 @@ public class PlanetaCache {
 		return aparicoesFilmes.containsKey(value);
 	}
 	
-	public /*static*/ boolean isCacheAtivo() {
+	public boolean isCacheAtivo() {
 		return ativo;
 	}
 	

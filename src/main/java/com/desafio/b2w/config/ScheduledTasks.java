@@ -10,7 +10,7 @@ import com.desafio.b2w.external.cache.PlanetaCache;
 @Component
 public class ScheduledTasks {
 
-	private static final long TIMER_MINUTES = 1;
+	private static final long TIMER_MINUTES = 15;
 	
 	@Autowired
 	private PlanetaCache cache;

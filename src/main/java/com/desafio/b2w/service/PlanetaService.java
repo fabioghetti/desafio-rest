@@ -56,8 +56,8 @@ public class PlanetaService {
 
 	public PlanetaTO buscarPeloId(String id) throws ErroConversaoDadosExternosException {
 		Planeta planeta = planetaRepository.findById(id);
-		return PlanetaConverter.convertToTransferObject(planeta, 
-				swapiService.getTotalAparicoesFilmes(planeta.getNome()));
+		return planeta != null ? PlanetaConverter.convertToTransferObject(planeta, 
+				swapiService.getTotalAparicoesFilmes(planeta.getNome())) : null;
 	}
 
 	public void remover(String id) {

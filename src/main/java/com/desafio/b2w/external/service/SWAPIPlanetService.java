@@ -22,11 +22,9 @@ public class SWAPIPlanetService extends SWAPIService {
 	
 	public Integer getTotalAparicoesFilmes(final String nomeDoPlaneta) throws ErroConversaoDadosExternosException {
 		if (planetaCache.isCacheAtivo() && planetaCache.contains(nomeDoPlaneta)) {
-			System.out.println("nao buscou");
 			return planetaCache.getValue(nomeDoPlaneta);
 		} else {
 			Integer totalAparicoes = 0;
-			System.out.println("buscou");
 			PlanetaSWAPIWrapper wrapper = this.buscaPorPlanetas(nomeDoPlaneta);
 			if (wrapper != null && !wrapper.getPlanetas().isEmpty()) {
 				PlanetaSWAPI planetaSWAPI = wrapper.getPlanetas().get(0);

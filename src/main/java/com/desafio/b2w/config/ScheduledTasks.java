@@ -17,7 +17,6 @@ public class ScheduledTasks {
 	
 	@Scheduled(fixedRate = TIMER_MINUTES * 60000)
 	public void carregaPlanetasAparicoesEmFilmes() throws ErroConversaoDadosExternosException {
-		System.out.println("executou timer");
 		cache.carregarDadosCache();
 	}
 }

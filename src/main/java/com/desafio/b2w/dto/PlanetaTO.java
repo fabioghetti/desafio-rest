@@ -1,27 +1,32 @@
-package com.desafio.b2w.model;
+package com.desafio.b2w.dto;
 
-import org.springframework.data.annotation.Id;
+import org.hibernate.validator.constraints.NotBlank;
 
-public class Planeta {
+public class PlanetaTO {
 
-	@Id
 	private String id;
 	
+	@NotBlank()
 	private String nome;
 	
+	@NotBlank()
 	private String clima;
 	
+	@NotBlank()
 	private String terreno;
 	
-	public Planeta() {
+	private Integer totalAparicoes;
+
+	public PlanetaTO() {
 		
 	}
 	
-	public Planeta(final String id, final String nome, final String clima, final String terreno) {
+	public PlanetaTO (final String id, final String nome, final String clima, final String terreno, final Integer totalAparicoes) {
 		this.id = id;
 		this.nome = nome;
 		this.clima = clima;
 		this.terreno = terreno;
+		this.totalAparicoes = totalAparicoes;
 	}
 	
 	public String getId() {
@@ -56,4 +61,11 @@ public class Planeta {
 		this.terreno = terreno;
 	}
 
+	public Integer getTotalAparicoes() {
+		return totalAparicoes;
+	}
+
+	public void setTotalAparicoes(Integer totalAparicoes) {
+		this.totalAparicoes = totalAparicoes;
+	}
 }

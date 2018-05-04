@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.desafio.b2w.model.Planeta;
+import com.desafio.b2w.dto.PlanetaTO;
+import com.desafio.b2w.exception.ErroConversaoDadosExternosException;
+import com.desafio.b2w.exception.PlanetaJaCadastradoException;
 import com.desafio.b2w.service.PlanetaService;
 
 @RestController
@@ -28,22 +30,21 @@ public class PlanetaResource {
 	private PlanetaService service;
 	
 	@GetMapping()
-	public ResponseEntity<List<Planeta>> buscarPlanetas(@RequestParam(value = "nome", required = false) String nome) {
-		List<Planeta> planetas = service.buscarPlanetas(nome);
+	public ResponseEntity<List<PlanetaTO>> buscarPlanetas(@RequestParam(value = "nome", required = false) String nome) throws ErroConversaoDadosExternosException {
+		List<PlanetaTO> planetas = service.buscarPlanetas(nome);
 		return planetas != null ? ResponseEntity.ok(planetas) : ResponseEntity.notFound().build();
 	}
 	
 	@PostMapping
-	public ResponseEntity<Planeta> criar(@Valid @RequestBody Planeta planeta) {
-		Planeta planetaSalvo = service.criar(planeta);
+	public ResponseEntity<PlanetaTO> criar(@Valid @RequestBody PlanetaTO planetaTO) throws ErroConversaoDadosExternosException, PlanetaJaCadastradoException {
+		PlanetaTO planetaSalvo = service.criar(planetaTO);
 		return ResponseEntity.status(HttpStatus.CREATED).body(planetaSalvo);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Planeta> buscarPeloId(@PathVariable String id) { 
-		Planeta planetaRecuperado = service.buscarPeloId(id);
+	public ResponseEntity<PlanetaTO> buscarPeloId(@PathVariable String id) throws ErroConversaoDadosExternosException { 
+		PlanetaTO planetaRecuperado = service.buscarPeloId(id);
 		return planetaRecuperado != null ? ResponseEntity.ok(planetaRecuperado) : ResponseEntity.notFound().build();
-		
 	}
 	
 	@DeleteMapping("/{id}")
@@ -51,6 +52,5 @@ public class PlanetaResource {
 	public void remover(@PathVariable String id) {
 		service.remover(id);
 	}
-	
 	
 }

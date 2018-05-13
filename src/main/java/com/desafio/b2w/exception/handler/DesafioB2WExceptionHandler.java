@@ -32,7 +32,7 @@ public class DesafioB2WExceptionHandler extends ResponseEntityExceptionHandler {
 		List<Erro> erros = Arrays.asList(new Erro(
 				messageSource.getMessage("erro.planeta.ja.cadastrado", null, LocaleContextHolder.getLocale())));
 		
-		return handleExceptionInternal(ex, erros, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
+		return handleExceptionInternal(ex, erros, new HttpHeaders(), HttpStatus.CONFLICT, request);
 	}
 	
 	@ExceptionHandler({ ErroConversaoDadosExternosException.class } )
